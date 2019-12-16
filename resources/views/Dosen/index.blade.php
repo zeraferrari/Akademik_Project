@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="container">
-        <h3>Data Akademik</h3>
-            <a href="{{route('akademik.create')}}" class="btn btn-primary btn-md"><i class="fas fa-plus-circle"></i> Add Data</a>
+        <h3>Data Dosen</h3>
+            <a href="{{route('dosen.create')}}" class="btn btn-primary btn-md"><i class="fas fa-plus-circle"></i> Add Data</a>
         <hr>
         @if (session('status'))
             <div class="alert alert-success " role="alert">
@@ -27,7 +27,7 @@
             <tr align="center">
                 <th scope="col">No</th>
                 <th scope="col">Nama</th>
-                <th scope="col">NIM</th>
+                <th scope="col">NIP</th>
                 <th scope="col">Email</th>
                 <th scope="col">Action</th>
             </tr>
@@ -37,12 +37,12 @@
                     <tr>
                         <td>{{ $key->id }}</td>
                         <td>{{ $key->Nama }}</td>
-                        <td>{{ $key->NIM }}</td>
+                        <td>{{ $key->NIP }}</td>
                         <td>{{ $key->Email }}</td>
                         <td>
-                            <a href="{{route('akademik.show', $key['id'])}}" class="btn btn-primary btn-sm"><i class="far fa-eye"></i> Show</a>
-                            <a href="{{route('akademik.edit', $key['id'])}}" class="btn btn-warning btn-sm"><i class="fas fa-user-edit"></i> Edit</a>
-                            <form class="d-inline" action="{{route('akademik.delete', $key['id'])}}" onsubmit="return('Are Your Sure Delete This Data ?')" method="POST">
+                            <a href="{{route('dosen.show', $key['id'])}}" class="btn btn-primary btn-sm"><i class="far fa-eye"></i> Show</a>
+                            <a href="{{route('dosen.edit', $key['id'])}}" class="btn btn-warning btn-sm"><i class="fas fa-user-edit"></i> Edit</a>
+                            <form class="d-inline" action="{{route('dosen.delete', $key['id'])}}" onsubmit="return('Are Your Sure Delete This Data ?')" method="POST">
                                 {{ csrf_field() }}
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm"><i class="far fa-trash-alt"></i> Delete</button>

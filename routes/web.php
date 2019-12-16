@@ -19,4 +19,23 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::GET('/Akademik', 'Akademik_Controller@index')->name('akademik.index');
+Route::group(['prefix' => '/Akademik'], function(){
+    Route::GET('/', 'Akademik_Controller@index_web')->name('akademik.index');
+    Route::GET('/Create', 'Akademik_Controller@create')->name('akademik.create');
+    Route::POST('/', 'Akademik_Controller@store')->name('akademik.store');
+    Route::GET('/{id}', 'Akademik_Controller@show')->name('akademik.show');
+    Route::GET('/{id}/Change', 'Akademik_Controller@edit')->name('akademik.edit');
+    Route::PUT('/{id}', 'Akademik_Controller@update')->name('akademik.update');
+    Route::DELETE('/{id}', 'Akademik_Controller@destroy')->name('akademik.delete');
+});
+
+Route::group(['prefix' => '/Dosen'], function(){
+    Route::GET('/', 'Dosen_Controller@index_web')->name('dosen.index');
+    Route::GET('/Create', 'Dosen_Controller@create')->name('dosen.create');
+    Route::POST('/', 'Dosen_Controller@store')->name('dosen.store');
+    Route::GET('/{id}', 'Dosen_Controller@show')->name('dosen.show');
+    Route::GET('/{id}/Change', 'Dosen_Controller@edit')->name('dosen.edit');
+    Route::PUT('/{id}', 'Dosen_Controller@update')->name('dosen.update');
+    Route::DELETE('/{id}', 'Dosen_Controller@destroy')->name('dosen.delete');
+});
+

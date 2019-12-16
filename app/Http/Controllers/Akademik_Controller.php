@@ -7,7 +7,7 @@ use App\Data_Akademik;
 use App\Http\Resources\AkademikResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Http\Facades\Hash;
+use Illuminate\Support\Facades\Hash;
 use GuzzleHttp\Client;
 use GuzzleHttp\GuzzleResponseParser;
 
@@ -42,6 +42,11 @@ class Akademik_Controller extends Controller
         return AkademikResource::collection(Data_Akademik::all());
     }
 
+    public function index_web(){
+        $data = Data_Akademik::all();
+        return view('Akademik.index', compact('data'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,7 +54,7 @@ class Akademik_Controller extends Controller
      */
     public function create()
     {
-        //
+        return view('Akademik.create');
     }
 
     /**
@@ -60,7 +65,22 @@ class Akademik_Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'Nama'      => 'required|min:4|max:80',
+            'NIM'       => 'required|min:10|unique:data_akademik',
+            'Email'     => 'required|email|unique:data_akademik',
+            'Password'  => 'required' 
+        ]);
+
+        /*====================KOLOM DATABASE======================= */
+        $new_data = Data_Akademik::create([
+            'Nama'          =>  $request->Nama,
+            'NIM'           =>  $request->NIM,
+            'Email'         =>  $request->Email,
+            'Password'      =>  Hash::make($request->Password)
+        ]);
+
+        return redirect()->route('akademik.index')->with('status', 'Data Has Been Successfully Created');
     }
 
     /**
@@ -71,7 +91,8 @@ class Akademik_Controller extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Data_Akademik::findOrFail($id);
+        return view('Akademik.show', ['data'=>$data]);
     }
 
     /**
@@ -82,7 +103,8 @@ class Akademik_Controller extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Data_Akademik::findOrFail($id);
+        return view('Akademik.edit', ['data'=>$data]);
     }
 
     /**
@@ -94,7 +116,32 @@ class Akademik_Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*====================KOLOM DATABASE======================= */
+        $data_update = Data_Akademik::findOrFail($id);
+        
+        $Nama       = $request->Nama;
+        $NIM        = $request->NIM;
+        $Email      = $request->Email;
+        $Password   = $request->Password;
+
+        if($Nama && $NIM && $Email && $Password) {
+            $data_update->update([
+                'Nama'      =>  $request->Nama,
+                'NIM'       =>  $request->NIM,
+                'Email'     =>  $request->Email,
+                'Password'  =>  Hash::make($request->Password)
+            ]);    
+        }
+
+        else if($Nama && $NIM && $Email){
+            $data_update->update([
+                'Nama'  =>  $request->Nama,
+                'NIM'   =>  $request->NIM,
+                'Email' =>  $request->Email,
+            ]);    
+        }
+        $data_update->save();
+        return redirect()->route('akademik.index')->with('status', 'Data Has Been Successfully Update');   
     }
 
     /**
@@ -105,6 +152,9 @@ class Akademik_Controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Data_Akademik::findOrFail($id);
+
+        $data->delete();
+        return redirect()->back()->with('status', 'Data Has Been Successfully Delete');
     }
 }
