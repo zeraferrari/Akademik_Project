@@ -23,6 +23,8 @@ route::GET('/GetData', 'Students_Controller@Get_Data_API');
 /*=====================================================================================*/
 
 /*================================ROUTE SEND API SERVER================================ */
-Route::GET('/Akademik', 'Akademik_Controller@index');
-Route::GET('/Dosen', 'Dosen_Controller@index');
+Route::GET('/Akademik', 'Akademik_Controller@index')->middleware('auth:api');
+Route::GET('/Dosen', 'Dosen_Controller@index')->middleware('auth:api');
 /*===================================================================================== */
+
+Route::post('/login-api','LoginApiController@login');
