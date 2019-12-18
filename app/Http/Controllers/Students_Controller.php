@@ -41,8 +41,8 @@ class Students_Controller extends Controller
         ));
 
         $response = curl_exec($curl);
-        $data = $response;
-        return view('Search.index')->with('data', $data);
+        $data = json_decode($response);
+        return view('Search.index', ['data'=>$data]);
     }
 
     public function to_view_search(){
