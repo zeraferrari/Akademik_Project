@@ -39,3 +39,5 @@ Route::group(['prefix' => '/Dosen'], function(){
     Route::DELETE('/{id}', 'Dosen_Controller@destroy')->name('dosen.delete');
 });
 
+// Route::GET('/Search', 'Students_Controller@to_view_search')->name('search');
+Route::GET('/Search', 'Students_Controller@get_data')->name('search.data');

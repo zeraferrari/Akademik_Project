@@ -19,20 +19,20 @@ class Akademik_Controller extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function Get_Data_API(){
-    //     $client = new Client(['base_uri' => '192.168.43.26:8000']);
+    public function Get_Data_API(){
+        $client = new Client(['base_uri' => '192.168.137.1']);
 
-    //     $header = ['headers' =>
-    //         [
-    //             'Authorization' =>  'Bearer TOKENCeyC6HHzFk61aT6SpJeMHTCJCHvu1UD7QV8SOPH3BLAMbvsl5OPo78hstqP7fSeGT4JytAJF3D9g6JFyEt45LXZT',
-    //             'Accept'    =>  'application/json; charset=utf-8',
-    //         ]
-    //     ];
+        $header = ['headers' =>
+            [
+                'Authorization' =>  'Bearer AYDW89VmLHsgGj2J3kl8WV9ABxxcAx5b4TkoE94FeQTMcoaRDfYlowq4gbydDLEYVRotTdFWn1bczNx8fXKaSbQM',
+                'Accept'    =>  'application/json; charset=utf-8',
+            ]
+        ];
 
-    //     $send = $client->request('GET', '/api/member', $header);
-    //     $response = $send->getBody();
-    //     return $response;
-    // }
+        $send = $client->request('GET', '/api/search-score', $header);
+        $response = $send->getBody();
+        return $response;
+    }
     
     public function index()
     {
