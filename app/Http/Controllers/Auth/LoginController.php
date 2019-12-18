@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/Search-Score';
 
     /**
      * Create a new controller instance.
@@ -48,7 +48,7 @@ class LoginController extends Controller
                 $user->api_token = Str::random(88);
                 $user->save();
             }
-            return view('/home');
+            return view('Search.index');
         }else{
             return response()->json(['message'=>'password or email invalid', 'status'=>403]);
         }

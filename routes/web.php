@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => '/Akademik'], function(){
     Route::GET('/', 'Akademik_Controller@index_web')->name('akademik.index');
@@ -40,3 +40,8 @@ Route::group(['prefix' => '/Dosen'], function(){
 });
 
 Route::GET('/Search', 'Students_Controller@get_data')->name('search.data');
+Route::GET('/Search-Score', 'Students_Controller@to_view_search')->name('searching');
+
+// Route::GET('/Search-Score',function(){
+//     return view('Search.index');
+// });
