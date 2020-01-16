@@ -33,7 +33,7 @@ class Akademik_Controller extends Controller
     //     $response = $send->getBody();
     //     return $response;
     // }
-    
+
     public function index()
     {
         // $get_data = Data_Akademik::all();
@@ -69,7 +69,7 @@ class Akademik_Controller extends Controller
             'Nama'      => 'required|min:4|max:80',
             'NIM'       => 'required|min:10|unique:data_akademik',
             'Email'     => 'required|email|unique:data_akademik',
-            'Password'  => 'required' 
+            'Password'  => 'required'
         ]);
 
         /*====================KOLOM DATABASE======================= */
@@ -118,7 +118,7 @@ class Akademik_Controller extends Controller
     {
         /*====================KOLOM DATABASE======================= */
         $data_update = Data_Akademik::findOrFail($id);
-        
+
         $Nama       = $request->Nama;
         $NIM        = $request->NIM;
         $Email      = $request->Email;
@@ -130,7 +130,7 @@ class Akademik_Controller extends Controller
                 'NIM'       =>  $request->NIM,
                 'Email'     =>  $request->Email,
                 'Password'  =>  Hash::make($request->Password)
-            ]);    
+            ]);
         }
 
         else if($Nama && $NIM && $Email){
@@ -138,10 +138,10 @@ class Akademik_Controller extends Controller
                 'Nama'  =>  $request->Nama,
                 'NIM'   =>  $request->NIM,
                 'Email' =>  $request->Email,
-            ]);    
+            ]);
         }
         $data_update->save();
-        return redirect()->route('akademik.index')->with('status', 'Data Has Been Successfully Update');   
+        return redirect()->route('akademik.index')->with('status', 'Data Has Been Successfully Update');
     }
 
     /**

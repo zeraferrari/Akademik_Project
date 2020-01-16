@@ -8,16 +8,16 @@ use GuzzleHttp\GuzzleResponseParser;
 class Students_Controller extends Controller
 {
     public function Get_Data_API(){
-        $client = new Client(['base_uri' => '192.168.43.26:8000']);
+        $client = new Client(['base_uri' => '127.0.0.1:8000']);
 
         $header = ['headers' =>
             [
-                'Authorization' =>  'Bearer TOKENCeyC6HHzFk61aT6SpJeMHTCJCHvu1UD7QV8SOPH3BLAMbvsl5OPo78hstqP7fSeGT4JytAJF3D9g6JFyEt45LXZT',
+                'Authorization' =>  'Bearer Bt8EnkvIQJmmSBy73JubuScz17yUbtr0l07xn4wB0VBiAgmJZ85NU6qwZIhL5XdJkmtTKNx0H96o7zGBqYezS2kL',
                 'Accept'    =>  'application/json; charset=utf-8',
             ]
         ];
 
-        $send = $client->request('GET', '/api/students', $header);
+        $send = $client->request('GET', '/api/member', $header);
         $response = $send->getBody();
         return $response;
     }
