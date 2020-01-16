@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 /*================================ROUTE GET API SERVER================================= */
 // route::GET('/GetData', 'Akademik_Controller@Get_Data_API');
-route::GET('/GetData', 'Students_Controller@Get_Data_API');
+route::GET('/GetData', 'Students_Controller@get_data');
 /*=====================================================================================*/
 
 /*================================ROUTE SEND API SERVER================================ */
